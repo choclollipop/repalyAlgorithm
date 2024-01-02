@@ -24,26 +24,23 @@ int swap(int * val1, int * val2)
 
 void bubbleSort(int * array, int length)
 {
-    /* 增加标志位 */
-    int sorted = 1;
-    for (int idx = 0; idx < length - 1; idx++)
+    /* 寻找已经排好序的数据在数组中的位置 */
+    int sortedIndex = 1;
+    for (int end = length; end > 0; end--)
     {
-        sorted = 1;
-        for (int pos = 0; pos < length - 1 - idx; pos++)
+        sortedIndex = 1;
+        for (int pos = 1; pos < end; pos++)
         {   
             /* 后面的数字小就交换 */
-            if (array[pos] > array[pos + 1])
+            if (array[pos] < array[pos - 1])
             {
-                swap(&array[pos], &array[pos + 1]);
-                /* 未排序成功 */
-                sorted = 0;
+                swap(&array[pos], &array[pos - 1]);
+                /* 取最后一次交换的数据在数组中的位置，可以避免后续排好序的值再重复遍历 */
+                sortedIndex = pos;
             }
         }
-        /* 则表示上一轮遍历已经是全部排好序的结果，则不需要进行后续遍历 */
-        if (sorted == 1)
-        {
-            break;
-        }
+        /* 将排序结束位置更新 */
+        end = sortedIndex;
     }
 }
 
