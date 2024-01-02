@@ -6,22 +6,23 @@
 int main()
 {
     int buffer[BUFFER_SIZE] = {1, 30, 24, 5, 58, 12, 39};
+    int len = sizeof(buffer) / sizeof(buffer[0]);
     int min = 0;
     /* 寻找pos后最小值的下标 */
     int sub = 0;
-    int tmp = 0;
 
     /* 外层循环，控制比较的位置 */
-    for(int pos = 0; pos < BUFFER_SIZE; pos++)
+    for(int pos = 0; pos < len; pos++)
     {
         min = buffer[pos];
         sub = pos;
         /* 内层循环，寻找最小值 */
-        for(int idx = pos + 1; idx < BUFFER_SIZE; idx++)
+        for(int idx = pos + 1; idx < len; idx++)
         {
             if(buffer[idx] < min)
             {
                 min = buffer[idx];
+                /* 最小值的数据在数组中的下标 */
                 sub = idx;
             }
         }
