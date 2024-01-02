@@ -9,6 +9,8 @@ int printArray(int * array, int arraySize)
     {
         printf("array[%d] : %d\n", idx, array[idx]);
     }
+
+    return 0;
 }
 
 int swap(int * val1, int * val2)
@@ -22,15 +24,25 @@ int swap(int * val1, int * val2)
 
 void bubbleSort(int * array, int length)
 {
+    /* 增加标志位 */
+    int sorted = 1;
     for (int idx = 0; idx < length - 1; idx++)
     {
+        sorted = 1;
         for (int pos = 0; pos < length - 1 - idx; pos++)
         {   
             /* 后面的数字小就交换 */
             if (array[pos] > array[pos + 1])
             {
                 swap(&array[pos], &array[pos + 1]);
+                /* 未排序成功 */
+                sorted = 0;
             }
+        }
+        /* 则表示上一轮遍历已经是全部排好序的结果，则不需要进行后续遍历 */
+        if (sorted == 1)
+        {
+            break;
         }
     }
 }
