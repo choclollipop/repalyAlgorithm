@@ -2,6 +2,10 @@
 
 int quickSort(int *array, int start, int end)
 {
+    if(!array)
+    {
+        return 0;
+    }
     /* 保证开始位置比结束位置小时才可以进行排序 */
     if(start < end)
     {
